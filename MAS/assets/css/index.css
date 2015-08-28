@@ -57,3 +57,11 @@
 .numresults{
 	/*text-align: center;*/
 }
+
+.fa-circle.active {
+	color: #BAD964;
+}
+
+.fa-circle.restricted {
+	color: #e66859;
+}

@@ -5,7 +5,7 @@ angular.module('MAS', [
 		{
 			name: 'Research',
 			active : true,
-			filterCategories : ['Strategy', 'Fund', 'Account Min.', 'Asset Class', 'Status']
+			filterCategories : ['Style','Strategy', 'Fund', 'Account Min.', 'Asset Class', 'Status']
 		}, {
 			name: 'Requirements',
 			active : false,
