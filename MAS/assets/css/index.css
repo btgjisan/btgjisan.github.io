@@ -1,0 +1,37 @@
+.navbar{
+	margin-bottom: 0;
+}
+
+.schwab-logo{
+    height: 3rem;
+    width: 3rem;
+}
+
+.vertical-margin-row {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.mainfilter-row, .advancedfilter-row{
+	background-color: #DDEEFF;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.mainfilter-row .input-group input.form-control{
+	background-color: transparent;
+	padding-left: 1rem;
+	border-radius: .5rem;
+}
+
+.resultnum-row{
+	margin-top: 2rem;
+}
+
+.numresults{
+	/*text-align: center;*/
+}

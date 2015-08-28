@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Schwab MAS prototype</title>
+	</head>
+	<body>
+		<header>
+			<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="assets/css/index.css">
+			<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon-16x16.png">
+		</header>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">
+						<img class="schwab-logo" alt="Brand" src="assets/images/schwablogo.png">
+					</a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container-fluid" ng-controller="SearchAndFilter">
+			<div class="row filter-dropdown-row vertical-margin-row">
+				<div class="col-md-4 col-sm-4">
+					<div class="dropdown">
+						<button id="filters-dropdown" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Filters
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labeledby="filters-dropdown">
+							<li>
+								Filter 1
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</li>
+							<li>
+								<a>Filter 2</a>
+							</li>
+							<li>
+								<a>Filter 3</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row nav-row">
+				<div class="col-sm-3 col-md-3 col-md-offset-9 col-sm-offset-9">
+					<ul class="nav nav-tabs">
+					  <li role="presentation" ng-repeat="category in categories" ng-class="{'active' : category.active}" ng-click="selectCategory(category)">
+					  	<a href="#" ng-bind="category.name"></a>
+					  </li>
+					</ul>
+				</div>
+			</div>
+			<div class="row mainfilter-row">
+				<div class="col-sm-1 col-md-1"></div>
+			    <div class="col-sm-2 col-md-2" ng-repeat="filter in selectedcategory.filterCategories">
+			    	<div class="input-group fullwidth">
+			    		<input class="form-control" type="text" placeholder="{{filter}}" ng-value="">
+			    	</div>
+			    </div>
+		  	</div>
+		  	<div class="row advancedfilter-row">
+		  		<div class="col-md-2 col-sm-2">
+			  		<button class="btn btn-default">More</button>
+		  		</div>
+		  	</div>
+		  	<div class="row resultnum-row">
+		  		<div class="col-sm-3 col-md-3">
+		  			<p class="numresults"> <b>Result:</b> 3</p>
+		  		</div>
+		  		<div class="col-sm-2 col-md-2 col-md-offset-7 col-sm-offset-7">
+		  			<div class="dropdown">
+		  				<button id="columns-dropdown" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+		  					Columns
+		  					<span class="caret"></span>
+		  				</button>
+		  				<ul class="dropdown-menu" aria-labeledby="columns-dropdown">
+		  					<li> <a>Profile </a></li>
+		  					<li> <a>Review </a></li>
+		  					<li> <a>Platform </a></li>
+		  					<li> <a>Retirement Account </a></li>
+		  				</ul>
+		  			</div>
+		  		</div>
+		  	</div>
+		  	<div class="row">
+		  		<table class="table table-striped">
+		  		<thead>
+		  			<tr>
+		  				<th><input type="checkbox"></th>
+		  				<th>Style</th>
+		  				<th>Strategy</th>
+		  				<th>Fund</th>
+		  				<th>Account Min.</th>
+		  				<th>Asset Class</th>
+		  				<th>Strategy Status</th>
+		  			</tr>
+		  		</thead>
+		  		<tbody>
+		  			<tr>
+		  				<td><input type="checkbox"></td>
+		  				<td>All Cap Core</td>
+		  				<td>TPI Dividend Growth Strategy (K-1 generating)</td>
+		  				<td>ThomasPartners, Inc.</td>
+		  				<td>$100000</td>
+		  				<td>Equity</td>
+		  				<td>Active</td>
+		  			</tr>
+		  			<tr>
+		  				<td><input type="checkbox"></td>
+		  				<td>Asset Allocation</td>
+		  				<td>Windhaven Diversified Aggressive</td>
+		  				<td>GW&K Investment Management, LLC</td>
+		  				<td>$250000</td>
+		  				<td>Fixed Income</td>
+		  				<td>Restricted</td>
+		  			</tr>
+		  		</tbody>
+				</table>
+		  	</div>
+		</div>
+
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
