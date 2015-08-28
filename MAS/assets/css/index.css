@@ -16,6 +16,19 @@
 	width: 100%;
 }
 
+.filter-li{
+	padding: .5rem;
+	padding-left: 1rem;
+}
+
+.filter-li span{
+	float: right;
+}
+
+.filter-li span.glyphicon-pencil{
+	margin-left: .5rem;
+}
+
 .mainfilter-row, .advancedfilter-row{
 	background-color: #DDEEFF;
 	padding-top: 2rem;
