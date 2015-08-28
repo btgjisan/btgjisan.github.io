@@ -16,9 +16,18 @@
 	width: 100%;
 }
 
-.filter-li{
-	padding: .5rem;
-	padding-left: 1rem;
+.filter-dropdown-row .dropdown {
+	float:left;
+	margin-right: 1rem;
+}
+
+.filter-ul{
+	width: 40%;
+}
+
+.filter-ul hr{
+	margin-top: .5rem;
+	margin-bottom: .5rem;
 }
 
 .filter-li span{
