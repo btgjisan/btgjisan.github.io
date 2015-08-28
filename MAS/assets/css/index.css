@@ -50,6 +50,19 @@
 	border-radius: .5rem;
 }
 
+.mainfilter-row .dropdown-menu{
+	padding: .5rem;
+}
+
+.mainfilter-row .dropdown-menu h4{
+	text-align: center
+}
+
+.mainfilter-row .dropdown-menu #id, .mainfilter-row .dropdown-menu label {
+	text-align: center;
+}
+
+
 .resultnum-row{
 	margin-top: 2rem;
 }
@@ -65,3 +78,4 @@
 .fa-circle.restricted {
 	color: #e66859;
 }
+
