@@ -57,7 +57,9 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
         }
       }else{
         $scope.selectedFilter = filter;
-      }
+      };
+
+      $scope.filterNameEditMode = true;
     };
 
     $scope.isChecked = function(value, category){
@@ -135,19 +137,49 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
       }
     };
 
+    $scope.clearFilters = function(){
+      if(!$scope.selectedFilter){
+        $scope.strategies = Strategies;
+      }else{
+        $scope.selectedFilter.categories = [];
+        $scope.filterStrategies($scope.selectedFilter.categories);
+      }
+    };
+
     $scope.filterStrategies = function(categories){
       if(!categories){
         $scope.strategies = strategies;
       }else{
-        var filterObject = {};
+        $scope.filterObject = {};
         for(var i = 0; i < categories.length; i++){
-          filterObject[categories[i].name] = categories[i].values.toString();
+          $scope.filterObject[categories[i].name] = categories[i].values;
         };
-        console.log(filterObject);
+        console.log($scope.filterObject);
 
-        var filteredStrategies =  filterFilter(strategies, filterObject);
+        var filteredStrategies =  filterFilter(strategies, customFilter);
         $scope.strategies = filteredStrategies;
+      }
+    }
 
+    function customFilter(strategy){
+      if(_.isEmpty($scope.filterObject)){
+        return true
+      }else{
+        var match = false;
+        for(var key in $scope.filterObject){
+          var valueMatch = false;
+          if(_.isEmpty($scope.filterObject[key])){
+            valueMatch = true;
+          }else{
+            for (var i = 0; i < $scope.filterObject[key].length; i++){
+              if(strategy[key] && strategy[key].indexOf($scope.filterObject[key][i]) !== -1){
+                valueMatch = true
+              }
+            }
+          }
+          match = valueMatch;
+        }
+        return match
       }
     }
   }

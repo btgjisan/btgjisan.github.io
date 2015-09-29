@@ -56,7 +56,7 @@
 						</ul>
 					</div>
 					<button class="btn btn-lg btn-primary">Save Filter</button>
-					<button class="btn btn-lg btn-default">Clear</button>
+					<button class="btn btn-lg btn-default" ng-click="clearFilters()">Clear</button>
 				</div>
 				<div class="col-sm-2 col-md-2 col-sm-offset-6 col-md-offset-6">
 					<button class="btn btn-lg btn-default pull-right"> Compare</button>
@@ -64,8 +64,9 @@
 			</div>
 			<div class="row nav-row">
 				<div class="col-sm-3 col-md-3">
-					<h4 ng-bind="selectedFilter ? selectedFilter.name : 'New Filter'" ng-click="editFilterName(selectedFilter)"></h4>
-					<input class="hide" ng-model="selectedFilter.name">
+					<h4 class="pull-left" ng-hide="filterNameEditMode" ng-bind="selectedFilter ? selectedFilter.name : 'New Filter'" ng-click="editFilterName(selectedFilter)"></h4>
+					<input type="text" class="pull-left form-control" ng-show="filterNameEditMode" ng-model="selectedFilter.name" ng-blur="filterNameEditMode = null">
+					<i id="edit-filter-name" class="fa fa-pencil pull-left" ng-hide="filterNameEditMode" ng-click="editFilterName(selectedFilter)"></i>
 				</div>
 				<div class="col-sm-3 col-md-3 col-md-offset-6 col-sm-offset-9">
 					<ul class="nav nav-tabs">
@@ -89,7 +90,7 @@
 					    	</ul>
 							<ul class="list-group maincategory-ul" ng-if="category.dataType == 'search'">
 								<li class="list-group-item" ng-repeat="value in category.values|filter: category.search|limitTo: 5  ">
-									<input type="checkbox" ng-change="sync(bool,value, filter)" ng-model="bool" ng-checked="isChecked(value,category)">
+									<input type="checkbox" ng-change="sync(bool,value, category)" ng-model="bool" ng-checked="isChecked(value,category)">
 									<span ng-bind="value"></span>
 								</li>
 							</ul>
