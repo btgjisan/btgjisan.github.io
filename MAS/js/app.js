@@ -83,7 +83,13 @@ angular.module('MAS', [
           }
         ]
       },
-      {name : "Filter 2"},
+      {
+        name : "Neuberger Strategies",
+        categories : [{
+          name : 'strategy',
+          values : ['Neuberger']
+        }]
+      },
       {name : "Filter 3"}
     ];
 
@@ -92,7 +98,6 @@ angular.module('MAS', [
     $scope.selectFilter = function(filter){
       $scope.selectedFilter = filter;
       $scope.filterStrategies(filter.categories);
-
     };
 
     $scope.deleteFilter = function(filter){
@@ -270,7 +275,7 @@ angular.module('MAS', [
         return category.name
       }else{
         for(var i=0; i < $scope.selectedFilter.categories.length; i++){
-          if(category.name == $scope.selectedFilter.categories[i].name){
+          if(category.name.toLowerCase() == $scope.selectedFilter.categories[i].name.toLowerCase()){
             return category.name + ": " +  $scope.selectedFilter.categories[i].values.toString();
           }
         }
@@ -289,7 +294,8 @@ angular.module('MAS', [
         console.log(filterObject);
 
         var filteredStrategies =  filterFilter(strategies, filterObject);
-        $scope.strategies = filteredStrategies
+        $scope.strategies = filteredStrategies;
+
       }
     }
   }
