@@ -5,6 +5,7 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
   function($scope, filterFilter, Strategies, Categories) {
     var strategies = Strategies;
     $scope.strategies = strategies;
+    console.log(strategies);
 
     $scope.categories = Categories;
 
@@ -111,6 +112,7 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
               name : category.name,
               values : [value]
             });
+            $scope.filterStrategies($scope.selectedFilter.categories);
           }
         }else{
           var indexOfCategoryValue = $scope.selectedFilter.categories[indexOfCategoryName].values.indexOf(value);
@@ -122,18 +124,18 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
 
     $scope.categoryValue = function(category){
       if(!$scope.selectedFilter){
-        return category.name
+        return category.displayName
       }else if(!$scope.selectedFilter.categories){
-        return category.name
+        return category.displayName
       }else if(!$scope.selectedFilter.categories.length) {
-        return category.name
+        return category.displayName
       }else{
         for(var i=0; i < $scope.selectedFilter.categories.length; i++){
           if(category.name.toLowerCase() == $scope.selectedFilter.categories[i].name.toLowerCase()){
-            return category.name + ": " +  $scope.selectedFilter.categories[i].values.toString();
+            return category.displayName + ": " +  $scope.selectedFilter.categories[i].values.toString();
           }
         }
-        return category.name
+        return category.displayName;
       }
     };
 
