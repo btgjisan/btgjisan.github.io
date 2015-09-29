@@ -1,13 +1,12 @@
 var MAS = angular.module('MAS', [
     'ngRoute'
 ]);
-MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Categories',
-  function($scope, filterFilter, Strategies, Categories) {
+MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Categories', 'Filters',
+  function($scope, filterFilter, Strategies, Categories, Filters) {
     var strategies = Strategies;
     $scope.strategies = strategies;
-    console.log(strategies);
-
     $scope.categories = Categories;
+    $scope.filters = Filters;
 
     $scope.selectCategory = function(category) {
       $scope.selectedcategory.active = false;
@@ -19,29 +18,10 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
     $scope.selectedcategory = $scope.categories[0];
     $scope.selectedcategory.active = true;
 
-    $scope.filters = [
-      {
-        name : "Active Status",
-        categories: [
-          {
-            name : 'strategyStatus',
-            values : ['Active']
-          }
-        ]
-      },
-      {
-        name : "Neuberger Strategies",
-        categories : [{
-          name : 'strategy',
-          values : ['Neuberger']
-        }]
-      },
-      {name : "Filter 3"}
-    ];
-
     $scope.selectedFilter = null;
 
     $scope.selectFilter = function(filter){
+      delete $scope.selectedFilter;
       $scope.selectedFilter = filter;
       $scope.filterStrategies(filter.categories);
     };
