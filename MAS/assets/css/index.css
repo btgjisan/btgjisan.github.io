@@ -50,6 +50,13 @@
 	border-radius: .5rem;
 }
 
+.mainfilter-row button {
+
+	background-color: transparent;
+	padding-left: 1rem;
+	border-radius: .5rem;
+}
+
 .mainfilter-row .dropdown-menu{
 	padding: .5rem;
 }

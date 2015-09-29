@@ -32,22 +32,10 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu filter-ul" aria-labeledby="filters-dropdown">
-							<li class="filter-li">
+							<li class="filter-li" ng-repeat="filter in filters" ng-click="selectFilter(filter)">
 								<a href="#">
-									Filter 1
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								</a>
-							</li>
-							<li class="filter-li">
-								<a href="#">
-									Filter 2
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								</a>
-							</li>
-							<li class="filter-li">
-								<a href="#">
-									Filter 3
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									{{filter.name}}
+									<span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="deleteFilter(filter)"></span>
 								</a>
 							</li>
 							<hr>
@@ -86,7 +74,11 @@
 				</div>
 			</div>
 			<div class="row nav-row">
-				<div class="col-sm-3 col-md-3 col-md-offset-9 col-sm-offset-9">
+				<div class="col-sm-3 col-md-3">
+					<h4 ng-bind="selectedFilter ? selectedFilter.name : 'New Filter'" ng-click="editFilterName(selectedFilter)"></h4>
+					<input class="hide" ng-model="selectedFilter.name">
+				</div>
+				<div class="col-sm-3 col-md-3 col-md-offset-6 col-sm-offset-9">
 					<ul class="nav nav-tabs">
 					  <li role="presentation" ng-repeat="category in categories" ng-class="{'active' : category.active}" ng-click="selectCategory(category)">
 					  	<a href="#" ng-bind="category.name"></a>
@@ -95,20 +87,15 @@
 				</div>
 			</div>
 			<div class="row mainfilter-row">
-			    <div class="col-sm-2 col-md-2 dropdown" ng-repeat="filter in selectedcategory.filterCategories">
+			    <div class="col-sm-2 col-md-2 dropdown" ng-repeat="category in selectedcategory.filterCategories">
 			    	<div class="input-group fullwidth" >
-			    		<input id="{{filter.name}}" class="form-control dropdown-toggle" type="text" placeholder="{{filter.name}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-			    		<div class="dropdown-menu fullwidth" aria-labeledby="{{filter.name}}">
-			    			<h4>Filter By</h4>
-			    			<ul class="list-group mainfilter-ul" ng-if="filter.dataType == 'category'">
-			    				<li class="list-group-item">
-			    					<input type="checkbox"> Category 1
-			    				</li>
-			    				<li class="list-group-item">
-			    					<input type="checkbox"> Category 2
-			    				</li>
-			    				<li class="list-group-item">
-			    					<input type="checkbox"> Category 3
+			    		<button id="{{category.name}}" class="form-control dropdown-toggle" type="text" ng-bind="categoryValue(category)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+			    		<div class="dropdown-menu fullwidth" aria-labeledby="{{category.name}}">
+			    			<input class="form-control" type="search" ng-model="category.search" placeholder="{{'Find ' + category.name}}">
+			    			<ul class="list-group maincategory-ul" ng-if="category.dataType == 'checklist'">
+			    				<li class="list-group-item" ng-repeat="value in category.values|filter: category.search ">
+			    					<input type="checkbox" ng-change="sync(bool,value, filter)" ng-model="bool" ng-checked="isChecked(value,category)">
+									<span ng-bind="value"></span>
 			    				</li>
 					    	</ul>
 					    	<div ng-if="filter.dataType == 'number'">
@@ -119,92 +106,54 @@
 							 
 								<div id="slider-range"></div>
 					    	</div>
-			    			<h4>Sort By</h4>
-			    			<ul class="list-group mainfilter-ul">
-			    				<li class="list-group-item">
-			    					<input type="checkbox"> Category 1
-			    				</li>
-			    				<li class="list-group-item">
-			    					<input type="checkbox"> Category 2
-			    				</li>
-			    			</ul>
 			    		</div>
 			    	</div>
 			    </div>
 		  	</div>
-		  	<div class="row advancedfilter-row">
-		  		<div class="col-md-2 col-sm-2">
-			  		<button class="btn btn-default">More</button>
-		  		</div>
-		  	</div>
+
+
 		  	<div class="row resultnum-row">
 		  		<div class="col-sm-3 col-md-3">
 		  			<p class="numresults"> <b>Result:</b> 3</p>
 		  		</div>
-		  		<div class="col-sm-2 col-md-2 col-md-offset-7 col-sm-offset-7">
-		  			<div class="dropdown">
-		  				<button id="columns-dropdown" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
-		  					Columns
-		  					<span class="caret"></span>
-		  				</button>
-		  				<ul class="dropdown-menu" aria-labeledby="columns-dropdown">
-		  					<li> <a>Profile </a></li>
-		  					<li> <a>Review </a></li>
-		  					<li> <a>Platform </a></li>
-		  					<li> <a>Retirement Account</a></li>
-		  				</ul>
-		  			</div>
-		  		</div>
+
 		  	</div>
 		  	<div class="row">
 		  		<table class="table table-striped">
 		  		<thead>
 		  			<tr>
-		  				<th><input type="checkbox"></th>
-		  				<th>Style</th>
+		  				<th><input type="checkbox" ng-click="checkAll()"></th>
+						<th></th>
+						<th>Manager</th>
 		  				<th>Strategy</th>
-		  				<th>Fund</th>
-		  				<th>Account Min.</th>
 		  				<th>Asset Class</th>
+		  				<th>Invest Style</th>
+		  				<th>Minimum</th>
 		  				<th>Strategy Status</th>
+						<th>Profile</th>
+						<th>Review</th>
 		  			</tr>
 		  		</thead>
 		  		<tbody>
-		  			<tr>
+		  			<tr ng-repeat="strategy in strategies">
 		  				<td>
 		  					<input type="checkbox">
-		  					<i class="fa fa-circle restricted"></i>
 		  				</td>
-		  				<td> All Cap Core</td>
-		  				<td>TPI Dividend Growth Strategy (K-1 generating)</td>
-		  				<td>ThomasPartners, Inc.</td>
-		  				<td>$100000</td>
-		  				<td>Equity</td>
-		  				<td>Active</td>
-		  			</tr>
-		  			<tr>
+						<td>
+							<i class="fa fa-info-circle" ng-class="strategy.status"></i>
+						</td>
+		  				<td ng-bind="strategy.moneyManager"></td>
+		  				<td ng-bind="strategy.strategy">TPI Dividend Growth Strategy (K-1 generating)</td>
+		  				<td ng-bind="strategy.assetClass">ThomasPartners, Inc.</td>
+						<td ng-bind="strategy.style"></td>
+		  				<td ng-bind="strategy.minimum">$100000</td>
+		  				<td ng-bind="strategy.strategyStatus">Equity</td>
 		  				<td>
-		  					<input type="checkbox">
-		  					<i class="fa fa-circle active"></i>
-		  				</td>
-		  				<td>Asset Allocation</td>
-		  				<td>Windhaven Diversified Aggressive</td>
-		  				<td>GW&K Investment Management, LLC</td>
-		  				<td>$250000</td>
-		  				<td>Fixed Income</td>
-		  				<td>Restricted</td>
-		  			</tr>
-		  			<tr>
-		  				<td>
-		  					<input type="checkbox">
-		  					<i class="fa fa-circle active"></i>
-		  				</td>
-		  				<td>Asset Allocation</td>
-		  				<td>Windhaven Diversified Aggressive</td>
-		  				<td>GW&K Investment Management, LLC</td>
-		  				<td>$250000</td>
-		  				<td>Fixed Income</td>
-		  				<td>Restricted</td>
+							<i class="fa fa-file-pdf-o" ></i>
+						</td>
+						<td>
+							<i class="fa fa-file-pdf-o" ></i>
+						</td>
 		  			</tr>
 
 		  		</tbody>
