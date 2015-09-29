@@ -10,18 +10,7 @@
 		<link rel="stylesheet" href="assets/css/index.css">
 	</head>
 	<body>
-		<header>
-			
-		</header>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">
-						<img class="schwab-logo" alt="Brand" src="assets/images/blue.png">
-					</a>
-				</div>
-			</div>
-		</nav>
+
 
 		<div class="container-fluid" ng-controller="SearchAndFilter">
 			<div class="row filter-dropdown-row vertical-margin-row">
@@ -94,7 +83,7 @@
 			    			<input class="form-control" type="search" ng-model="category.search" placeholder="{{'Find ' + category.name}}">
 			    			<ul class="list-group maincategory-ul" ng-if="category.dataType == 'checklist'">
 			    				<li class="list-group-item" ng-repeat="value in category.values|filter: category.search ">
-			    					<input type="checkbox" ng-change="sync(bool,value, filter)" ng-model="bool" ng-checked="isChecked(value,category)">
+			    					<input type="checkbox" ng-change="sync(bool,value, category)" ng-model="bool" ng-checked="isChecked(value,category)">
 									<span ng-bind="value"></span>
 			    				</li>
 					    	</ul>
@@ -170,8 +159,11 @@
 		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script src="bower_components/lodash/lodash.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/services/strategies.js"></script>
+		<script src="js/services/categories.js"></script>
 	</body>
 </html>
