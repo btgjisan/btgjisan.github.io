@@ -121,7 +121,7 @@ MAS.factory('Strategies', function(){
         {"assetClass":"Fixed Income","style":"Long-Term Municipals","moneyManager":"PIMCO","strategy":"PIMCO 1-18 Year New York Municipal Bond Ladder","strategyStatus":"Strategy Active- Open to New Accounts","minimum":"$250,000 "},
         {"assetClass":"Fixed Income","style":"Short-Term Municipals","moneyManager":"PIMCO","strategy":"PIMCO 1-6 Year California Municipal Bond Ladder","strategyStatus":"Strategy Active- Open to New Accounts","minimum":"$250,000 "},
         {"assetClass":"Fixed Income","style":"Short-Term Municipals","moneyManager":"PIMCO","strategy":"PIMCO 1-6 Year Municipal Bond Ladder","strategyStatus":"Strategy Active- Open to New Accounts","minimum":"$250,000 "},
-        {"assetClass":"Fixed Income","style":"Short-Term Municipals","moneyManager":"PIMCO","strategy":"PIMCO 1-6 Year New York Municipal Bond Ladder","strategyStatus":"Strategy Active- Open to New Accounts","minimum":"$250,000 "}
+        {"assetClass": "Fixed Income","style":"Short-Term Municipals","moneyManager":"PIMCO","strategy":"PIMCO 1-6 Year New York Municipal Bond Ladder","strategyStatus":"Strategy Active- Open to New Accounts","minimum":"$250,000 "}
     ];
     return strategies;
 });

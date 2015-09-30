@@ -16,7 +16,7 @@ MAS.controller('SearchAndFilter', ['$scope', 'filterFilter', 'Strategies', 'Cate
     };
 
     $scope.selectedcategory = $scope.categories[0];
-    $scope.selectedcategory.active = true;
+    $scope.selectedcategory.active = true;  
 
     $scope.selectedFilter = null;
 
