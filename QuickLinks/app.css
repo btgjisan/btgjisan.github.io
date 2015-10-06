@@ -1,0 +1,7 @@
+.navbar{
+    background-color: #037dae;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: white;
+}

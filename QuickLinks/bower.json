@@ -1,0 +1,23 @@
+{
+  "name": "QuickLinks",
+  "version": "0.0.0",
+  "homepage": "https://github.com/btgjisan/btgjisan.github.io",
+  "authors": [
+    "Jisan Zaman <jzaman@bstonetech.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
