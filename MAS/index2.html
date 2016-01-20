@@ -85,22 +85,21 @@
 			    			<ul class="list-group maincategory-ul" ng-if="category.dataType == 'checklist'">
 			    				<li class="list-group-item" ng-repeat="value in category.values|filter: category.search ">
 			    					<input type="checkbox" ng-change="sync(bool,value, category)" ng-model="bool" ng-checked="isChecked(value,category)">
-									<span ng-bind="value"></span>
+									  <span ng-bind="value"></span>
 			    				</li>
 					    	</ul>
-							<ul class="list-group maincategory-ul" ng-if="category.dataType == 'search'">
-								<li class="list-group-item" ng-repeat="value in category.values|filter: category.search|limitTo: 5  ">
-									<input type="checkbox" ng-change="sync(bool,value, category)" ng-model="bool" ng-checked="isChecked(value,category)">
-									<span ng-bind="value"></span>
-								</li>
-							</ul>
+                <ul class="list-group maincategory-ul" ng-if="category.dataType == 'search'">
+                  <li class="list-group-item" ng-repeat="value in category.values|filter: category.search|limitTo: 5  ">
+                    <input type="checkbox" ng-change="sync(bool,value, category)" ng-model="bool" ng-checked="isChecked(value,category)">
+                    <span ng-bind="value"></span>
+                  </li>
+                </ul>
 					    	<div ng-if="filter.dataType == 'number'">
 					    		<p>
   									<label for="amount">Price range:</label>
   									<input type="text" id="amount" readonly style="border:0; color:gray; font-weight:bold;">
-								</p>
-							 
-								<div id="slider-range"></div>
+								  </p>
+								  <div id="slider-range"></div>
 					    	</div>
 			    		</div>
 			    	</div>
