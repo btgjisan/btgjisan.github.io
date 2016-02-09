@@ -1,7 +1,12 @@
 .navbar{
-    background-color: #037dae;
+    background-color: #037dae
+
 }
 
 .navbar-default .navbar-nav>li>a{
     color: white;
+}
+
+.navbar-default .navbar-nav>.active>a{
+    background-color: #4ec3e0
 }
